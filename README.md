@@ -1,6 +1,9 @@
-# GLM-5V-Turbo MCP Server
+# GLM-Vision MCP Server
 
-Zhipu AI's GLM-5V-Turbo 视觉模型 MCP Server，用于 Claude Code。
+[![npm version](https://img.shields.io/npm/v/glm-vision-mcp-server)](https://www.npmjs.com/package/glm-vision-mcp-server)
+[![GitHub](https://img.shields.io/github/stars/kira4094/glm-vision-mcp-server)](https://github.com/kira4094/glm-vision-mcp-server)
+
+Zhipu AI GLM 视觉模型 MCP Server，支持 GLM-5V-Turbo / GLM-4.6V 等，用于 Claude Code。
 
 ## 特性
 
@@ -9,12 +12,24 @@ Zhipu AI's GLM-5V-Turbo 视觉模型 MCP Server，用于 Claude Code。
 - 🧠 可选 Thinking 模式（复杂推理）
 - 📏 200K 上下文 / 128K 最大输出
 - 🏆 Design2Code 基准 94.8 分
+- ⚡ 一行 npx 部署，无需手动安装
 
-## 安装
+## 快速开始（npx）
 
-```bash
-cd E:/Projects/Claude/MCP/GLM/glm-vision-mcp-server
-npm install
+Claude Code settings.json 中添加：
+
+```json
+{
+  "mcpServers": {
+    "glm-5v": {
+      "command": "npx",
+      "args": ["-y", "glm-vision-mcp-server"],
+      "env": {
+        "ZAI_API_KEY": "your-zai-api-key"
+      }
+    }
+  }
+}
 ```
 
 ## 环境变量
@@ -24,16 +39,15 @@ npm install
 | `ZAI_API_KEY` | ✅ | — | Z.AI API Key，去 [z.ai](https://z.ai) 注册获取 |
 | `GLM_MODEL` | 否 | `glm-5v-turbo` | 模型名，可换成 `glm-4.6v`、`glm-4.6v-flash`（免费）等 |
 
+## 本地开发
+
 ```bash
-# Windows PowerShell
-$env:ZAI_API_KEY = "your-key-here"
-$env:GLM_MODEL = "glm-4.6v-flash"  # 想省钱换免费模型
+git clone https://github.com/kira4094/glm-vision-mcp-server.git
+cd glm-vision-mcp-server
+npm install
 ```
 
-## 注册到 Claude Code
-
-编辑 `E:/Projects/Claude/MCP/glm-vision-mcp-server/.vscode/settings.json`
-或全局 `%APPDATA%\Claude\claude_desktop_config.json`：
+本地路径注册到 Claude Code：
 
 ```json
 {
@@ -41,29 +55,6 @@ $env:GLM_MODEL = "glm-4.6v-flash"  # 想省钱换免费模型
     "glm-5v": {
       "command": "node",
       "args": ["E:\\Projects\\Claude\\MCP\\GLM\\glm-vision-mcp-server\\src\\index.js"],
-      "env": {
-        "ZAI_API_KEY": "your-key-here"
-      }
-    }
-  }
-}
-```
-
-### 或者发布到 npm 后用 npx
-
-```bash
-npm login
-npm publish --access public
-```
-
-然后 settings.json 里写：
-
-```json
-{
-  "mcpServers": {
-    "glm-5v": {
-      "command": "npx",
-      "args": ["-y", "@your-username/glm-vision-mcp-server"],
       "env": {
         "ZAI_API_KEY": "your-key-here"
       }
