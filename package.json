@@ -1,0 +1,22 @@
+{
+  "name": "glm-vision-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Zhipu AI's GLM vision models (GLM-5V-Turbo, GLM-4.6V, etc.)",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "glm-vision-mcp-server": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": ["mcp", "glm", "glm-5v", "vision", "zhipu", "z.ai"],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
